@@ -1,0 +1,11 @@
+@username="your.email.account@gmail.com"
+@password="xxxxxx"
+@calendar="St. George 2013"
+
+@year="2013"
+
+@outputDir="/Users/mcormier/Sites/calTest/"
+
+
+# vim: set syntax=ruby:
+#

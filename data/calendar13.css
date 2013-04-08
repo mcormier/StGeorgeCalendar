@@ -1,0 +1,61 @@
+
+div.month {
+  width: 770px;
+}
+
+div.monthHeader {
+  width: 770px; text-align: center;
+  font-size:36px;
+}
+
+div.weekDays div, div.dateRow div, div.contentRow > div {
+  width: 110px;
+  float: left;
+  height: 20px;
+}
+
+div.contentRow { }
+
+div.contentRow div.outerContainer {
+  width: 108px;
+  height: 150px;
+  border: 1px solid #DDD;
+}
+
+div.innerContainer {
+  display: table-cell; 
+  height: 150px;
+  width: 108px;
+  text-align: center;
+  vertical-align:middle;
+  white-space:pre-wrap;
+  font-size:14px;
+}
+
+
+div.otherMonth {
+  background-color: #CCC;
+}
+
+
+div.weekDays div {
+  text-align: center;
+  background-color: black;
+  color: white;
+  letter-spacing:1px;
+  padding-top:5px;
+  padding-bottom:5px;
+}
+
+div.dateRow div:first-child {
+  border-left: 1px solid #111;
+  width:103px;
+}
+
+div.dateRow div {
+  padding-right:5px; width: 104px;
+  border-top: 1px solid #111;
+  border-bottom: 1px solid #111;
+  border-right: 1px solid #111;
+  text-align: right; background-color: #DDD;
+}
