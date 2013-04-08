@@ -1,15 +1,21 @@
 #!/usr/bin/env ruby
 
 require 'rubygems'
+# reference: https://github.com/northworld/google_calendar
 require 'google_calendar'
 require 'nokogiri'
+
 require 'builder'
 require 'date'
+require 'time'
+# If the timezone isn't set properly an event
+# could show up on two days since the time shift
+# puts it on two days.
+ENV["TZ"] = "America/Halifax"
 
 
 load '../config/config.properties'
 
-# reference: https://github.com/northworld/google_calendar
 
 class MyCal < Google::Calendar 
 
@@ -58,7 +64,7 @@ def eventOnDay(event, day)
     endDate = Date.parse(endTime.strftime('%Y/%m/%d'))
 
     # All day events end at midnight on the next day
-    # which is totally fucking wrong
+    # which is totally wrong
     if event.all_day?
       endDate = endDate.prev_day
     end
@@ -77,7 +83,7 @@ def getEventString(currentDay, events)
     if eventOnDay(event, currentDay)
       # use the description
       if eventString.length > 0 
-        eventString = eventString + "\n" 
+        eventString = eventString + "\n\n" 
       end
       eventString += event.content
     end
@@ -87,7 +93,7 @@ def getEventString(currentDay, events)
   eventString 
 end
 
-def generateMonth( firstDay, filename, events )
+def generateMonth( firstDay, monthName, events )
   x = Builder::XmlMarkup.new( :indent => 2 )
   # i.e. "April 2013"
   monthHeader = Date::MONTHNAMES[firstDay.month] + " " + firstDay.year.to_s
@@ -98,8 +104,8 @@ def generateMonth( firstDay, filename, events )
   daysInMonth = getDaysInMonth(firstDay.month)
   day = 1
   
-  File.open( @outputDir + filename, "w") do |out|
-    out.puts x.div( :class => "month") {
+  File.open( @outputDir + monthName + ".html", "w") do |out|
+    out.puts x.div( :id => monthName, :class => "month") {
       outputHeaderAndWeekDays(x, monthHeader)
 
      
@@ -162,14 +168,23 @@ def outputHeaderAndWeekDays(x, monthHeader)
       } 
 end
 
+def generate(monthName, events)
+  d = Date.parse ('1 '+ monthName+ ' ' + @year)
+  generateMonth(d, monthName, events)
+  puts "Generated " + monthName
+end
 
 events = getCloudEventData
 puts "Got Event Data"
 
 #d = Date.parse ('1 Apr ' + @year)
-#generateMonth(d, "april.html", events)
+#generateMonth(d, "april", events)
 #puts "Generated April"
 
-d = Date.parse ('1 May ' + @year)
-generateMonth(d, "may.html", events)
-puts "Generated May"
+#d = Date.parse ('1 May ' + @year)
+#generateMonth(d, "may", events)
+#puts "Generated May"
+
+generate("June", events)
+
+
