@@ -182,6 +182,7 @@ puts "Got Event Data"
 #generateMonth(d, "may", events)
 #puts "Generated May"
 
-generate("June", events)
+#generate("June", events)
+generate("July", events)
 
 
