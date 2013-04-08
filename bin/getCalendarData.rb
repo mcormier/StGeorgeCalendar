@@ -102,14 +102,13 @@ def generateMonth( firstDay, monthName, events )
   currentMonth = firstDay.month
 
   daysInMonth = getDaysInMonth(firstDay.month)
-  day = 1
   
   File.open( @outputDir + monthName + ".html", "w") do |out|
     out.puts x.div( :id => monthName, :class => "month") {
       outputHeaderAndWeekDays(x, monthHeader)
 
      
-      while day < daysInMonth
+      while currentDay.month == currentMonth
 
         saveCurrentDay = currentDay
  
@@ -150,8 +149,6 @@ def generateMonth( firstDay, monthName, events )
             
           end
         }
-
-       day += 7
 
     end
 
