@@ -137,14 +137,16 @@ def generateMonth( firstDay, monthName, events )
             if currentDay.wday == i and currentDay.month == currentMonth
               val = getEventString( currentDay, events)
               currentDay = currentDay.next
-              cssClasses = "innerContainer"
+              cssOuterClasses = "outerContainer"
+              cssInnerClasses = "innerContainer"
             else
               val = ""
-              cssClasses = "innerContainer otherMonth"
+              cssOuterClasses = "outerContainer otherMonth"
+              cssInnerClasses = "innerContainer otherMonth"
             end
             
-            x.div( :class => "outerContainer") {
-                x.div( val, :class => cssClasses )
+            x.div( :class => cssOuterClasses) {
+                x.div( val, :class => cssInnerClasses )
             }
             
           end
