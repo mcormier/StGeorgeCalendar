@@ -174,15 +174,10 @@ end
 events = getCloudEventData
 puts "Got Event Data"
 
-#d = Date.parse ('1 Apr ' + @year)
-#generateMonth(d, "april", events)
-#puts "Generated April"
-
-#d = Date.parse ('1 May ' + @year)
-#generateMonth(d, "may", events)
-#puts "Generated May"
-
+#generate("April", events)
+#generate("May", events)
 #generate("June", events)
-generate("July", events)
+#generate("July", events)
+generate("August", events)
 
 
