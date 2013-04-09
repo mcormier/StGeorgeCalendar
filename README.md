@@ -1,11 +1,11 @@
 # St. George Calendar Generate-tron-amajig #
 
-## Ubunutu installation Notes ##
+## Ubuntu installation Notes ##
 
-sudo apt-get update
-sudo apt-get install libxml2 libxml2-dev libxslt1-dev
-sudo gem install nokogiri
-sudo gem install google\_calendar
+- sudo apt-get update
+- sudo apt-get install libxml2 libxml2-dev libxslt1-dev
+- sudo gem install nokogiri
+- sudo gem install google\_calendar
 
 
 ## Rules ##
