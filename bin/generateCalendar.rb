@@ -42,20 +42,6 @@ def getCloudEventData
 end
 
 
-COMMON_YEAR_DAYS_IN_MONTH = [nil, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
-#
-# The St. George Calendar runs from April to Oct
-# So we can use constants and not worry about leap
-# years in February
-#
-def getDaysInMonth(month)
-  if month == 2
-    raise "February and leap years not supported!!"
-  end 
-  COMMON_YEAR_DAYS_IN_MONTH[month]
-end
-
-
 def eventOnDay(event, day)
     startTime = Time.parse(event.start_time)
     endTime = Time.parse(event.end_time)
@@ -101,8 +87,6 @@ def generateMonth( firstDay, monthName, events )
   currentDay = firstDay
   currentMonth = firstDay.month
 
-  daysInMonth = getDaysInMonth(firstDay.month)
-  
   File.open( @outputDir + monthName + ".html", "w") do |out|
     out.puts x.div( :id => monthName, :class => "month") {
       outputHeaderAndWeekDays(x, monthHeader)
