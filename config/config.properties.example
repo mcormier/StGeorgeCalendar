@@ -3,6 +3,7 @@
 @calendar="St. George 2013"
 
 @year="2013"
+@timezone = "America/Halifax"
 
 @outputDir="/Users/mcormier/Sites/calTest/"
 

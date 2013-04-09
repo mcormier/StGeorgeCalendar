@@ -4,17 +4,18 @@ require 'rubygems'
 # reference: https://github.com/northworld/google_calendar
 require 'google_calendar'
 require 'nokogiri'
-
 require 'builder'
 require 'date'
 require 'time'
+
+load '../config/config.properties'
+
 # If the timezone isn't set properly an event
 # could show up on two days since the time shift
 # puts it on two days.
-ENV["TZ"] = "America/Halifax"
+ENV["TZ"] = @timezone
 
 
-load '../config/config.properties'
 
 
 class MyCal < Google::Calendar 
