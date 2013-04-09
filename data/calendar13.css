@@ -1,11 +1,26 @@
 
-div.month {
-  width: 770px;
-}
+/* http://www.colourlovers.com/palette/2783566/Chihiro?widths=1 
+ *
+ * 3C2126 Black Accent
+ * A23C4A Burgandy
+ * FB5756 Pumpkin
+ * AF856F Dark Beige
+ * E5B688 Light Beige
+ *
+ * */
+
+div.otherMonth { background-color: #CCC; }
+
+
+
+div.month { width: 770px; }
 
 div.monthHeader {
   width: 770px; text-align: center;
+  text-transform:uppercase;
   font-size:36px;
+  padding-top:40px;
+  font-weight:bold;
 }
 
 div.weekDays div, div.dateRow div, div.contentRow > div {
@@ -18,13 +33,14 @@ div.contentRow { }
 
 div.contentRow div.outerContainer {
   width: 108px;
-  height: 150px;
+  height: 110px;
   border: 1px solid #DDD;
 }
 
 div.innerContainer {
+  background-color: #EEE;
   display: table-cell; 
-  height: 150px;
+  height: 110px;
   width: 108px;
   text-align: center;
   vertical-align:middle;
@@ -32,17 +48,26 @@ div.innerContainer {
   font-size:14px;
 }
 
+/* customize the default height of a day based on the max needed
+ * for a particular month
+ */
+div#May div.outerContainer, div#May div.innerContainer { height: 210px; }
+div#June div.outerContainer, div#June div.innerContainer { height: 220px; }
+div#July div.outerContainer, div#July div.innerContainer { height: 280px; }
+div#August div.outerContainer, div#August div.innerContainer { height: 290px; }
+div#September div.outerContainer, div#September div.innerContainer { height: 210px; }
 
-div.otherMonth {
-  background-color: #CCC;
-}
 
 
 div.weekDays div {
   text-align: center;
-  background-color: black;
+  background-color: #444;
+  border-left: 1px solid #CCC;
+  width:109px;
   color: white;
   letter-spacing:1px;
+  font-weight:bold;
+  font-family:Arial, sans-serif;
   padding-top:5px;
   padding-bottom:5px;
 }
