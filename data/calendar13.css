@@ -1,4 +1,6 @@
 
+/* @group Background colours */
+
 /* http://www.colourlovers.com/palette/2783566/Chihiro?widths=1 
  *
  * 3C2126 Black Accent
@@ -9,36 +11,72 @@
  *
  * */
 
-div.otherMonth { background-color: #CCC; }
+div.dateRow div { background-color: #3C2126; }
+div.weekDays div { background-color: #A23C4A; }
+div.innerContainer { background-color: #E5B688; }
+div.otherMonth { background-color: #3C2126; }
+
+/* @end */
+
+/* @group fonts */
+
+div.dateRow div { color: #E5B688; font-weight:bold; font-family:Arial;
+                  text-shadow: 1px 1px 3px #A23C4A;}
+
+div.monthHeader { color:#3C2126; text-align:center; text-transform:uppercase;
+                  font-size:48px; text-shadow: 2px 2px 2px #E5B688;}
+
+div.weekDays div {
+  text-align: center; color: #E5B688; letter-spacing:1px;
+  text-shadow: 1px 1px 3px #3C2126;
+  font-weight:bold; font-family:Arial, sans-serif;
+}
+
+/* @end */
+
+/* @group border colors*/
+
+div.contentRow div.outerContainer { border-left-color: #AF856F; 
+                                    border-right-color:#AF856F;}
+
+div.contentRow div.otherMonth { border-left-color: #3C2126; 
+                                border-right-color:#3C2126;}
+
+div.dateRow div:first-child { border-left-color: #AF856F; }
+
+div.dateRow div { border-top-color: #111; 
+                  border-bottom-color: #111;
+                  border-left-color: #E5B688; 
+                  border-right-color: #E5B688; }
+
+div.dateRow div.otherMonth { border-color: #3C2126; }
 
 
+div.weekDays div { 
+  border-left-color: #AF856F;
+  border-right-color: #AF856F;
+}
+
+/* @end */
 
 div.month { width: 770px; }
-
-div.monthHeader {
-  width: 770px; text-align: center;
-  text-transform:uppercase;
-  font-size:36px;
-  padding-top:40px;
-  font-weight:bold;
-}
+div.monthHeader { width: 770px; padding-top:40px; font-weight:bold; }
 
 div.weekDays div, div.dateRow div, div.contentRow > div {
-  width: 110px;
-  float: left;
-  height: 20px;
-}
+  width: 110px; float: left; height: 20px; }
 
 div.contentRow { }
 
 div.contentRow div.outerContainer {
   width: 108px;
   height: 110px;
-  border: 1px solid #DDD;
+  border-width:0;
+  border-left-width: 1px; 
+  border-right-width: 1px; 
+  border-style: solid;
 }
 
 div.innerContainer {
-  background-color: #EEE;
   display: table-cell; 
   height: 110px;
   width: 108px;
@@ -60,27 +98,32 @@ div#September div.outerContainer, div#September div.innerContainer { height: 210
 
 
 div.weekDays div {
-  text-align: center;
-  background-color: #444;
-  border-left: 1px solid #CCC;
-  width:109px;
-  color: white;
-  letter-spacing:1px;
-  font-weight:bold;
-  font-family:Arial, sans-serif;
+  border-style: solid;
+  border-width: 0;
+  border-left-width: 1px;
+  border-right-width: 1px;
+  width:108px;
   padding-top:5px;
   padding-bottom:5px;
 }
 
 div.dateRow div:first-child {
-  border-left: 1px solid #111;
+  border-left-width: 1px;
+  border-left-style:solid;
   width:103px;
 }
 
 div.dateRow div {
-  padding-right:5px; width: 104px;
-  border-top: 1px solid #111;
-  border-bottom: 1px solid #111;
-  border-right: 1px solid #111;
-  text-align: right; background-color: #DDD;
+  padding-right:5px; 
+  width: 103px;
+  border-style: solid;
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+  border-right-width: 1px;
+  border-left-width: 1px;
+  text-align: right; 
 }
+/* vim: set foldmethod=marker:
+ * vim: set foldmarker=@group,@end:
+ * vim: set foldlevel=1:
+ * vim: set nofoldenable: */
