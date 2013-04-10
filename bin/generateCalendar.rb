@@ -12,7 +12,36 @@ load '../config/config.properties'
 
 ENV["TZ"] = @timezone
 
+#
+# Add some convenience methods to the google_calendar gem
+#
+module Google
+  class Event
 
+    def startDate
+      if @startDate.nil?
+        startTime = Time.parse(self.start_time)
+        @startDate = Date.parse(startTime.strftime('%Y/%m/%d'))
+      end
+      return @startDate
+    end
+
+    def endDate
+      if @endDate.nil?
+        endTime = Time.parse(self.end_time)
+        @endDate = Date.parse(endTime.strftime('%Y/%m/%d'))
+
+        # All day events end at midnight on the next day
+        # which is totally wrong
+        if self.all_day?
+          @endDate = @endDate.prev_day
+        end
+      end
+      return @endDate
+    end
+
+  end
+end
 
 
 class MyCal < Google::Calendar 
@@ -40,19 +69,7 @@ end
 
 
 def eventOnDay(event, day)
-    startTime = Time.parse(event.start_time)
-    endTime = Time.parse(event.end_time)
-
-    startDate = Date.parse(startTime.strftime('%Y/%m/%d'))
-    endDate = Date.parse(endTime.strftime('%Y/%m/%d'))
-
-    # All day events end at midnight on the next day
-    # which is totally wrong
-    if event.all_day?
-      endDate = endDate.prev_day
-    end
-
-   return (day >= startDate and day <= endDate) 
+   return (day >= event.startDate and day <= event.endDate) 
 end
 
 
