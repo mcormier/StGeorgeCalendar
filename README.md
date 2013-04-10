@@ -31,7 +31,7 @@ A bunch of divs, that you can use CSS to turn into a table.
         </div>
         ...
       </div>
-      <!-- Another dateRow and contenRow for each week -->
+      <!-- Another dateRow and contentRow for each week -->
       ...
     </div>
  
