@@ -155,7 +155,7 @@ def generate(monthName, events)
 end
 
 events = getCloudEventData
-puts "Got Event Data from the Google cloud.  I like fluffy clouds."
+puts "Got event data from the Google cloud.  I like fluffy clouds..."
 
 generate("April", events)
 generate("May", events)
