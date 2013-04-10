@@ -10,9 +10,6 @@ require 'time'
 
 load '../config/config.properties'
 
-# If the timezone isn't set properly an event
-# could show up on two days since the time shift
-# puts it on two days.
 ENV["TZ"] = @timezone
 
 

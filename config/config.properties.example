@@ -1,11 +1,21 @@
-@username="your.email.account@gmail.com"
-@password="xxxxxx"
+@username="username@gmail.com"
+@password="xxxx"
 @calendar="St. George 2013"
-
 @year="2013"
+
+#######################
+# TIMEZONE
+#######################
+# This should be set to the timezone of the Google 
+# calendar. Not the timezone of the server generating the HTML.
+#
+# If the timezone isn't set properly an event
+# could show up on two days since the time shift
+# puts it on two days. 
+#
 @timezone = "America/Halifax"
 
-@outputDir="/Users/mcormier/Sites/calTest/"
+@outputDir="/home/tennis/www/calendar/"
 
 
 # vim: set syntax=ruby:
