@@ -151,19 +151,17 @@ end
 def generate(monthName, events)
   d = Date.parse ('1 '+ monthName+ ' ' + @year)
   generateMonth(d, monthName, events)
-  puts "Generated " + monthName
 end
+
+
 
 events = getCloudEventData
 puts "Got event data from the Google cloud.  I like fluffy clouds..."
 
-generate("April", events)
-generate("May", events)
-generate("June", events)
-generate("July", events)
-generate("August", events)
-generate("September", events)
-generate("October", events)
-generate("November", events)
-
+# April until November
+for i in 4..11
+  monthName = Date::MONTHNAMES[i]
+  generate(monthName, events)
+  puts "Generated " + monthName
+end
 
