@@ -25,14 +25,13 @@ class MyCal < Google::Calendar
 
 end
 
+
+
 def getCloudEventData
 
-  cal = MyCal.new(
-    :username => @username,
-    :password => @password,
-    :app_name => 'mycompany.com-googlecalendar-integration',
-    :calendar => @calendar
-  )
+  cal = MyCal.new( :username => @username, :password => @password,
+    :app_name => 'github.com-mcormier-StGeorgeCalendar',
+    :calendar => @calendar )
 
   events = cal.lookup()
 
