@@ -9,13 +9,40 @@ Grabs all the event data from a google calendar and generates an html page per m
 3. The content for each day comes from concatenating the description data. If you want an event to show up on your google calendar but not in the generated page then don't adda description.
 4. To push the line break formatting to the Google description, set the csswhite-space property to pre-wrap "white-space:pre-wrap" for the innerContainer div.
 
+## What it generates? ##
+
+A bunch of divs, that you can use CSS to turn into a table. 
+
+    <div id="September" class="month">
+      <div class="monthHeader">September 2013</div>
+      <div class="weekDays">
+        <div>Sunday</div>
+         ...
+        <div>Saturday</div>
+      </div>
+      <div class="dateRow">
+        <div class="">1</div>
+         ...
+        <div class="">7</div>
+      </div>
+      <div class="contentRow">
+        <div class="outerContainer">
+          <div class="innerContainer">Sept 1 Events</div>
+        </div>
+        ...
+      </div>
+      <!-- Another dateRow and contenRow for each week -->
+      ...
+    </div>
+ 
+ 
+
 ## How we use it? ##
 
 Integrated with some gross PHP to create one page with all months that slowly hides the months.
 
     <?php $now = date('Y-m-d');
-        if ($now < date('2013-05-01') ) { include 'calendar/April.html'; }
-     ?>
+          if ($now < date('2013-05-01')) { include 'calendar/April.html'; } ?>
     <div style="clear:both;"/>
     <?php if ($now < date('2013-06-01')) { include 'calendar/May.html'; } ?>
     <div style="clear:both;"/>
