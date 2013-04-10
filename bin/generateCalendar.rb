@@ -40,6 +40,11 @@ module Google
       return @endDate
     end
 
+    def onDay?(day)
+      return (day >= self.startDate and day <= self.endDate) 
+    end
+
+
   end
 end
 
@@ -68,11 +73,6 @@ def getCloudEventData
 end
 
 
-def eventOnDay(event, day)
-   return (day >= event.startDate and day <= event.endDate) 
-end
-
-
 def getEventString(currentDay, events)
 
   eventString = ""
@@ -80,7 +80,7 @@ def getEventString(currentDay, events)
   events.each do |event|
     start = Time.parse(event.start_time)
 
-    if eventOnDay(event, currentDay)
+    if event.onDay?(currentDay)
       # use the description
       if eventString.length > 0 
         eventString = eventString + "\n\n" 
