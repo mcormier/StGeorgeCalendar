@@ -17,7 +17,6 @@ ENV["TZ"] = @timezone
 #
 module Google
   class Event
-
     def startDate
       if @startDate.nil?
         startTime = Time.parse(self.start_time)
@@ -43,33 +42,25 @@ module Google
     def onDay?(day)
       return (day >= self.startDate and day <= self.endDate) 
     end
-
-
-  end
-end
-
-
-class MyCal < Google::Calendar 
-
-  # By default Google only returns 25 results at a time.
-  # This allows us to grab everything in one go
-  def lookup()
-    event_lookup("?max-results=999")
   end
 
+  class Calendar
+    # By default Google only returns 25 results at a time.
+    # This allows us to grab everything in one go
+    def lookup(maxResults=25)
+      return event_lookup("?max-results=" + maxResults.to_s)
+    end
+  end
 end
-
 
 
 def getCloudEventData
 
-  cal = MyCal.new( :username => @username, :password => @password,
+  cal = Google::Calendar.new( :username => @username, :password => @password,
     :app_name => 'github.com-mcormier-StGeorgeCalendar',
     :calendar => @calendar )
 
-  events = cal.lookup()
-
-  events
+  return cal.lookup(999)
 end
 
 
@@ -90,7 +81,7 @@ def buildEventString(currentDay, events)
 
   end
 
-  eventString 
+  return eventString 
 end
 
 def generateMonth( firstDay, monthName, events )
@@ -172,7 +163,7 @@ end
 
 
 
-events = getCloudEventData
+events = getCloudEventData()
 puts "Got event data from the Google cloud.  I like fluffy clouds..."
 
 # April until November
