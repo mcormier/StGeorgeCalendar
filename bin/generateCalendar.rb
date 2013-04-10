@@ -73,7 +73,7 @@ def getCloudEventData
 end
 
 
-def getEventString(currentDay, events)
+def buildEventString(currentDay, events)
 
   eventString = ""
 
@@ -133,7 +133,7 @@ def generateMonth( firstDay, monthName, events )
 
           for i in 0..6
             if currentDay.wday == i and currentDay.month == currentMonth
-              val = getEventString( currentDay, events)
+              val = buildEventString( currentDay, events)
               currentDay = currentDay.next
               cssOuterClasses = "outerContainer"
               cssInnerClasses = "innerContainer"
