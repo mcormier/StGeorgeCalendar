@@ -21,9 +21,9 @@ A bunch of divs, that you can use CSS to turn into a table.
         <div>Saturday</div>
       </div>
       <div class="dateRow">
-        <div class="">1</div>
+        <div>1</div>
          ...
-        <div class="">7</div>
+        <div>7</div>
       </div>
       <div class="contentRow">
         <div class="outerContainer">
