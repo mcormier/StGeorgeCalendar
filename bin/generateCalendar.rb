@@ -103,6 +103,31 @@ def generateDateRow(builder, currentDay, currentMonth)
   }
 end
 
+def generateContentRow(builder, currentDay, currentMonth, events)
+
+  day = currentDay  
+
+  builder.div( :class => "contentRow") {
+    for i in 0..6
+      if day.wday == i and day.month == currentMonth
+        val = buildEventString( day, events)
+        day = day.next
+        cssOuterClasses = "outerContainer"
+        cssInnerClasses = "innerContainer"
+      else
+        val = ""
+        cssOuterClasses = "outerContainer otherMonth"
+        cssInnerClasses = "innerContainer otherMonth"
+      end
+      
+      builder.div( :class => cssOuterClasses) {
+          builder.div( val, :class => cssInnerClasses )
+      }
+    end
+  }
+
+  return day
+end
 
 def generateMonth( firstDay, monthName, events )
   x = Builder::XmlMarkup.new( :indent => 2 )
@@ -116,33 +141,11 @@ def generateMonth( firstDay, monthName, events )
       outputHeaderAndWeekDays(x, firstDay)
      
       while currentDay.month == currentMonth
-
         saveCurrentDay = currentDay
         generateDateRow(x, currentDay, currentMonth)
         currentDay = saveCurrentDay
-
-        x.div( :class => "contentRow") {
-
-          for i in 0..6
-            if currentDay.wday == i and currentDay.month == currentMonth
-              val = buildEventString( currentDay, events)
-              currentDay = currentDay.next
-              cssOuterClasses = "outerContainer"
-              cssInnerClasses = "innerContainer"
-            else
-              val = ""
-              cssOuterClasses = "outerContainer otherMonth"
-              cssInnerClasses = "innerContainer otherMonth"
-            end
-            
-            x.div( :class => cssOuterClasses) {
-                x.div( val, :class => cssInnerClasses )
-            }
-            
-          end
-        }
-
-    end
+        currentDay = generateContentRow(x, currentDay, currentMonth, events)
+      end
 
     }
   end
