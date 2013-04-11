@@ -1,13 +1,13 @@
 # St. George Calendar Generate-tron-amajig #
 
 ## What it does? ##
-Grabs all the event data from a google calendar and generates an html page per month that you can include on your website.
+Grabs the event data from a Google calendar and generates an HTML page per month that you can include on your website.  Top this HTML cake with some CSS icing to make everything look pretty.
 
 ## How it works? ##
 1. Grabs all the event data from one Google calendar.
 2. Generates one html page per month for our tennis season (April to October)
-3. The content for each day comes from concatenating the description data. If you want an event to show up on your google calendar but not in the generated page then don't adda description.
-4. To push the line break formatting to the Google description, set the csswhite-space property to pre-wrap "white-space:pre-wrap" for the innerContainer div.
+3. The content for each day comes from concatenating the description data, not the event title. If you want an event to show up on your Google calendar but not in the generated page then don't add a description.
+4. To push the line break formatting to the Google description, set the csswhite-space property to pre-wrap **"white-space:pre-wrap"** for the innerContainer div. Use **data/calendar2013.css** with the generated html to see how this works.
 
 ## What it generates? ##
 
@@ -39,7 +39,7 @@ A bunch of divs, that you can use CSS to turn into a table.
 
 ## How we use it? ##
 
-Integrated with some gross PHP to create one page with all months that slowly hides the months.
+Integrated with some gross PHP to create one page with all months that slowly hides the months.  People like to see the calendar on one page, embeddable calendars don't provide this option, bring on the PHP ickiness.
 
     <?php $now = date('Y-m-d');
           if ($now < date('2013-05-01')) { include 'calendar/April.html'; } ?>
