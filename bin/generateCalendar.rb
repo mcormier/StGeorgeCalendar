@@ -84,15 +84,13 @@ end
 
 def generateMonth( firstDay, monthName, events )
   x = Builder::XmlMarkup.new( :indent => 2 )
-  # i.e. "April 2013"
-  monthHeader = Date::MONTHNAMES[firstDay.month] + " " + firstDay.year.to_s
 
   currentDay = firstDay
   currentMonth = firstDay.month
 
   File.open( @outputDir + monthName + ".html", "w") do |out|
     out.puts x.div( :id => monthName, :class => "month") {
-      outputHeaderAndWeekDays(x, monthHeader)
+      outputHeaderAndWeekDays(x, firstDay)
 
      
       while currentDay.month == currentMonth
@@ -145,13 +143,20 @@ def generateMonth( firstDay, monthName, events )
   end
 end
 
-def outputHeaderAndWeekDays(x, monthHeader)
-      x.div( monthHeader, :class => "monthHeader" )  
-      x.div( :class => "weekDays") {
-        Date::DAYNAMES.each { |day|
-          x.div day
-        }
-      } 
+# Generates:
+#   <div class="monthHeader">April 2013</div>
+#   <div class="weekDays">
+#     <div>Sunday</div>
+#     ...
+#     </div>Saturday</div>
+#   </div>
+#
+def outputHeaderAndWeekDays(x, firstDay)
+  monthHeader = Date::MONTHNAMES[firstDay.month] +" "+ firstDay.year.to_s
+  x.div( monthHeader, :class => "monthHeader" )  
+    x.div( :class => "weekDays") {
+      Date::DAYNAMES.each { |day| x.div day }
+    } 
 end
 
 def generate(monthName, events)
