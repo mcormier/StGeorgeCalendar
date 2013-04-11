@@ -1,10 +1,8 @@
 #!/usr/bin/env ruby
 
 require 'rubygems'
-# reference: https://github.com/northworld/google_calendar
-require 'google_calendar'
-require 'nokogiri'
-require 'builder'
+require 'google_calendar' # https://github.com/northworld/google_calendar
+require 'builder' # For building HTML
 require 'date'
 require 'time'
 
