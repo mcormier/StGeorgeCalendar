@@ -103,6 +103,12 @@ def generateDateRow(builder, currentDay, currentMonth)
   }
 end
 
+# <div class="contentRow">
+#   <div class="outerContainer">
+#     <div class="innerContainer">Event Info</div>
+#   </div>
+#   ...
+# </div>
 def generateContentRow(builder, currentDay, currentMonth, events)
 
   day = currentDay  
