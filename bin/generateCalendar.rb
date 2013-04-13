@@ -67,8 +67,6 @@ def buildEventString(currentDay, events)
   eventString = ""
 
   events.each do |event|
-    start = Time.parse(event.start_time)
-
     if event.onDay?(currentDay)
       # use the description
       if eventString.length > 0 
