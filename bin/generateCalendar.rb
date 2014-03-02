@@ -1,8 +1,9 @@
 #!/usr/bin/env ruby
 
 require 'rubygems'
-require 'google_calendar' # https://github.com/northworld/google_calendar
-require 'builder' # For building HTML
+require 'optparse'
+require 'google_calendar'     # https://github.com/northworld/google_calendar
+require 'builder'             # For building HTML
 require 'date'
 require 'time'
 
@@ -30,6 +31,7 @@ module Google
 
         # All day events end at midnight on the next day
         # which is totally wrong
+        # TODO -- method is gone ...
         if self.all_day?
           @endDate = @endDate.prev_day
         end
@@ -178,8 +180,29 @@ end
 
 
 
+options = {}
+OptionParser.new do |opts|
+  opts.banner = 'Usage: generateCalendar.rb [options]'
+
+  opts.on('-v', '--[no-]verbose', 'Run verbosely') do |v|
+    options[:verbose] = v
+  end
+end.parse!
+
+
+
+
 events = get_cloud_event_data
+if options[:verbose]
+  puts '==========================================='
+  puts 'Begin events received from the fluffy cloud'
+  puts events
+  puts 'End events received from fluffy cloud'
+  puts '==========================================='
+end
+
 puts 'Got event data from the Google cloud.  I like fluffy clouds...'
+
 
 # April until November
 for i in 4..11
