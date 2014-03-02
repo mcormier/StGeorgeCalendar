@@ -15,11 +15,12 @@ ENV["TZ"] = @timezone
 # Add some convenience methods to the google_calendar gem
 #
 module Google
+
   class Event
     def startDate
       if @startDate.nil?
-        startTime = Time.parse(self.start_time)
-        @startDate = Date.parse(startTime.strftime('%Y/%m/%d'))
+        time = Time.parse(self.start_time)
+        @startDate = Date.parse(time.strftime('%Y/%m/%d'))
       end
       return @startDate
     end
@@ -27,6 +28,7 @@ module Google
     def endDate
       if @endDate.nil?
         end_time = Time.parse(self.end_time)
+
         @endDate = Date.parse(end_time.strftime('%Y/%m/%d'))
 
         # All day events end at midnight on the next day
@@ -39,7 +41,19 @@ module Google
     end
 
     def on_day?(day)
-      (day >= self.startDate and day <= self.endDate)
+      (day >= self.startDate and day <= self.endDate )
+    end
+
+    # https://github.com/northworld/google_calendar/issues/27
+    def all_day?
+      case @start_time
+        when String
+          time = Time.parse(@start_time)
+        else
+          time = @start_time
+      end
+
+      duration % (24 * 60 * 60) == 0 && time == Time.local(time.year,time.month,time.day)
     end
 
   end
