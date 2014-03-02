@@ -52,7 +52,7 @@ module Google
 end
 
 
-def getCloudEventData
+def get_cloud_event_data
 
   cal = Google::Calendar.new( :username => @username, :password => @password,
     :app_name => 'github.com-mcormier-StGeorgeCalendar',
@@ -177,13 +177,13 @@ end
 
 
 
-events = getCloudEventData()
-puts "Got event data from the Google cloud.  I like fluffy clouds..."
+events = get_cloud_event_data
+puts 'Got event data from the Google cloud.  I like fluffy clouds...'
 
 # April until November
 for i in 4..11
   month_name = Date::MONTHNAMES[i]
   generate(month_name, events)
-  puts "Generated " + month_name
+  puts "Generated #{month_name}"
 end
 
