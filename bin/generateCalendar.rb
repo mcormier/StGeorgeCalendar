@@ -22,7 +22,8 @@ module Google
         time = Time.parse(self.start_time)
         @startDate = Date.parse(time.strftime('%Y/%m/%d'))
       end
-      return @startDate
+
+      @startDate
     end
 
     def endDate
@@ -37,7 +38,8 @@ module Google
           @endDate = @endDate.prev_day
         end
       end
-      return @endDate
+
+      @endDate
     end
 
     def on_day?(day)
