@@ -137,7 +137,7 @@ def generateContentRow(builder, currentDay, currentMonth, events)
   return day
 end
 
-def generateMonth( firstDay, monthName, events )
+def generate_month( firstDay, monthName, events )
   x = Builder::XmlMarkup.new( :indent => 2 )
 
   currentDay = firstDay
@@ -174,7 +174,7 @@ end
 
 def generate(month_name, events)
   d = Date.parse ('1 '+ month_name+ ' ' + @year)
-  generateMonth(d, month_name, events)
+  generate_month(d, month_name, events)
 end
 
 
