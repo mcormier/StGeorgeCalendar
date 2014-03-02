@@ -45,8 +45,8 @@ module Google
   end
 
   class Calendar
-    # By default Google only returns 25 results at a time.
-    # This allows us to grab everything in one go
+    # By default Google only returns 25 results at a time,
+    # this method allows us to grab everything in one go.
     def lookup(max_results=25)
       event_lookup("?max-results=" + max_results.to_s)
     end
