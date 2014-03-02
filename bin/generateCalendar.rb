@@ -182,8 +182,8 @@ puts "Got event data from the Google cloud.  I like fluffy clouds..."
 
 # April until November
 for i in 4..11
-  monthName = Date::MONTHNAMES[i]
-  generate(monthName, events)
-  puts "Generated " + monthName
+  month_name = Date::MONTHNAMES[i]
+  generate(month_name, events)
+  puts "Generated " + month_name
 end
 
