@@ -46,8 +46,9 @@ module Google
     # By default Google only returns 25 results at a time.
     # This allows us to grab everything in one go
     def lookup(maxResults=25)
-      return event_lookup("?max-results=" + maxResults.to_s)
+      event_lookup("?max-results=" + maxResults.to_s)
     end
+
   end
 end
 
