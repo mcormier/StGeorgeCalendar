@@ -31,7 +31,6 @@ module Google
 
         # All day events end at midnight on the next day
         # which is totally wrong
-        # TODO -- method is gone ...
         if self.all_day?
           @endDate = @endDate.prev_day
         end
