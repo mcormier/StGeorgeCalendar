@@ -161,9 +161,9 @@ def generate_month( first_day, month_name, events )
   current_day = first_day
   current_month = first_day.month
 
-  File.open( @outputDir + month_name + ".html", "w") do |out|
+  File.open( @outputDir + month_name + '.html', 'w') do |out|
     # <div id="April" class="month">
-    out.puts x.div( :id => month_name, :class => "month") {
+    out.puts x.div( :id => month_name, :class => 'month') {
       output_header_and_week_days(x, first_day)
      
       while current_day.month == current_month
