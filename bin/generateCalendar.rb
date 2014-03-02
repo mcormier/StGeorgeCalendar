@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
 
+#noinspection RubyResolve
+
 require 'rubygems'
 require 'optparse'
 require 'google_calendar'     # https://github.com/northworld/google_calendar
@@ -9,11 +11,13 @@ require 'time'
 
 load '../config/config.properties'
 
-ENV["TZ"] = @timezone
+ENV['TZ'] = @timezone
 
 #
 # Add some convenience methods to the google_calendar gem
 #
+
+
 module Google
 
   class Event
@@ -65,7 +69,7 @@ module Google
     # By default Google only returns 25 results at a time,
     # this method allows us to grab everything in one go.
     def lookup(max_results=25)
-      event_lookup("?max-results=" + max_results.to_s)
+      event_lookup('?max-results=' + max_results.to_s)
     end
 
   end
@@ -115,7 +119,7 @@ def generate_date_row(builder, current_day, current_month)
         day = day.next
         css_classes = ''
       else
-        val = " "
+        val = ' '
         css_classes = 'otherMonth'
       end
       builder.div( val, :class => css_classes )
