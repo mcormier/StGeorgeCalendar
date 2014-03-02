@@ -129,30 +129,30 @@ end
 #   </div>
 #   ...
 # </div>
-def generateContentRow(builder, currentDay, currentMonth, events)
+def generate_content_row(builder, current_day, current_month, events)
 
-  day = currentDay  
+  day = current_day
 
-  builder.div( :class => "contentRow") {
+  builder.div( :class => 'contentRow') {
     for i in 0..6
-      if day.wday == i and day.month == currentMonth
+      if day.wday == i and day.month == current_month
         val = buildEventString( day, events)
         day = day.next
-        cssOuterClasses = "outerContainer"
-        cssInnerClasses = "innerContainer"
+        css_outer_classes = 'outerContainer'
+        css_inner_classes = 'innerContainer'
       else
-        val = ""
-        cssOuterClasses = "outerContainer otherMonth"
-        cssInnerClasses = "innerContainer otherMonth"
+        val = ''
+        css_outer_classes = 'outerContainer otherMonth'
+        css_inner_classes = 'innerContainer otherMonth'
       end
       
-      builder.div( :class => cssOuterClasses) {
-          builder.div( val, :class => cssInnerClasses )
+      builder.div( :class => css_outer_classes) {
+          builder.div( val, :class => css_inner_classes )
       }
     end
   }
 
-  return day
+  day
 end
 
 def generate_month( first_day, month_name, events )
@@ -168,7 +168,7 @@ def generate_month( first_day, month_name, events )
      
       while current_day.month == current_month
         generateDateRow(x, current_day, current_month)
-        current_day = generateContentRow(x, current_day, current_month, events)
+        current_day = generate_content_row(x, current_day, current_month, events)
       end
     }
   end
@@ -183,7 +183,7 @@ end
 #   </div>
 #
 def output_header_and_week_days(x, first_day)
-  month_header = Date::MONTHNAMES[first_day.month] +" "+ first_day.year.to_s
+  month_header = Date::MONTHNAMES[first_day.month] + ' ' + first_day.year.to_s
   x.div( month_header, :class => 'monthHeader')
     x.div( :class => 'weekDays') {
       Date::DAYNAMES.each { |day| x.div day }
