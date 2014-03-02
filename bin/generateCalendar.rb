@@ -82,22 +82,22 @@ def get_cloud_event_data
 end
 
 
-def buildEventString(currentDay, events)
+def build_event_string(current_day, events)
 
-  eventString = ""
+  event_string = ''
 
   events.each do |event|
-    if event.on_day?(currentDay)
+    if event.on_day?(current_day)
       # use the description
-      if eventString.length > 0 
-        eventString = eventString + "\n\n" 
+      if event_string.length > 0
+        event_string = event_string + "\n\n"
       end
-      eventString += event.content
+      event_string += event.content
     end
 
   end
 
-  return eventString 
+  event_string
 end
 
 # <div class="dateRow">
@@ -105,20 +105,20 @@ end
 #   <div>1</div>
 #   ...
 # </div>
-def generateDateRow(builder, currentDay, currentMonth)
-  day = currentDay
+def generate_date_row(builder, current_day, current_month)
+  day = current_day
 
-  builder.div( :class => "dateRow") {
+  builder.div( :class => 'dateRow') {
     for i in 0..6
-      if day.wday == i and day.month == currentMonth
+      if day.wday == i and day.month == current_month
         val = day.day.to_s
         day = day.next
-        cssClasses = ""
+        css_classes = ''
       else
         val = " "
-        cssClasses = "otherMonth"
+        css_classes = 'otherMonth'
       end
-      builder.div( val, :class => cssClasses )
+      builder.div( val, :class => css_classes )
     end
   }
 end
@@ -136,7 +136,7 @@ def generate_content_row(builder, current_day, current_month, events)
   builder.div( :class => 'contentRow') {
     for i in 0..6
       if day.wday == i and day.month == current_month
-        val = buildEventString( day, events)
+        val = build_event_string( day, events)
         day = day.next
         css_outer_classes = 'outerContainer'
         css_inner_classes = 'innerContainer'
@@ -167,7 +167,7 @@ def generate_month( first_day, month_name, events )
       output_header_and_week_days(x, first_day)
      
       while current_day.month == current_month
-        generateDateRow(x, current_day, current_month)
+        generate_date_row(x, current_day, current_month)
         current_day = generate_content_row(x, current_day, current_month, events)
       end
     }
