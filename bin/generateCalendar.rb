@@ -164,7 +164,7 @@ def generate_month( first_day, month_name, events )
   File.open( @outputDir + month_name + ".html", "w") do |out|
     # <div id="April" class="month">
     out.puts x.div( :id => month_name, :class => "month") {
-      outputHeaderAndWeekDays(x, first_day)
+      output_header_and_week_days(x, first_day)
      
       while current_day.month == current_month
         generateDateRow(x, current_day, current_month)
@@ -182,10 +182,10 @@ end
 #     </div>Saturday</div>
 #   </div>
 #
-def outputHeaderAndWeekDays(x, firstDay)
-  monthHeader = Date::MONTHNAMES[firstDay.month] +" "+ firstDay.year.to_s
-  x.div( monthHeader, :class => "monthHeader" )  
-    x.div( :class => "weekDays") {
+def output_header_and_week_days(x, first_day)
+  month_header = Date::MONTHNAMES[first_day.month] +" "+ first_day.year.to_s
+  x.div( month_header, :class => 'monthHeader')
+    x.div( :class => 'weekDays') {
       Date::DAYNAMES.each { |day| x.div day }
     } 
 end
