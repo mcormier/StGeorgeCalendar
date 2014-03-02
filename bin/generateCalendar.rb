@@ -26,8 +26,8 @@ module Google
 
     def endDate
       if @endDate.nil?
-        endTime = Time.parse(self.end_time)
-        @endDate = Date.parse(endTime.strftime('%Y/%m/%d'))
+        end_time = Time.parse(self.end_time)
+        @endDate = Date.parse(end_time.strftime('%Y/%m/%d'))
 
         # All day events end at midnight on the next day
         # which is totally wrong
