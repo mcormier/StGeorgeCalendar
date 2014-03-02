@@ -38,9 +38,10 @@ module Google
       return @endDate
     end
 
-    def onDay?(day)
-      return (day >= self.startDate and day <= self.endDate) 
+    def on_day?(day)
+      (day >= self.startDate and day <= self.endDate)
     end
+
   end
 
   class Calendar
@@ -69,7 +70,7 @@ def buildEventString(currentDay, events)
   eventString = ""
 
   events.each do |event|
-    if event.onDay?(currentDay)
+    if event.on_day?(currentDay)
       # use the description
       if eventString.length > 0 
         eventString = eventString + "\n\n" 
