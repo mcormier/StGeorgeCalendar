@@ -137,16 +137,16 @@ def generateContentRow(builder, currentDay, currentMonth, events)
   return day
 end
 
-def generate_month( firstDay, monthName, events )
+def generate_month( first_day, month_name, events )
   x = Builder::XmlMarkup.new( :indent => 2 )
 
-  current_day = firstDay
-  current_month = firstDay.month
+  current_day = first_day
+  current_month = first_day.month
 
-  File.open( @outputDir + monthName + ".html", "w") do |out|
+  File.open( @outputDir + month_name + ".html", "w") do |out|
     # <div id="April" class="month">
-    out.puts x.div( :id => monthName, :class => "month") {
-      outputHeaderAndWeekDays(x, firstDay)
+    out.puts x.div( :id => month_name, :class => "month") {
+      outputHeaderAndWeekDays(x, first_day)
      
       while current_day.month == current_month
         generateDateRow(x, current_day, current_month)
