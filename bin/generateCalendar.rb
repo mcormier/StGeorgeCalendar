@@ -17,33 +17,34 @@ ENV["TZ"] = @timezone
 module Google
 
   class Event
-    def startDate
-      if @startDate.nil?
+
+    def start_date
+      if @start_date.nil?
         time = Time.parse(self.start_time)
-        @startDate = Date.parse(time.strftime('%Y/%m/%d'))
+        @start_date = Date.parse(time.strftime('%Y/%m/%d'))
       end
 
-      @startDate
+      @start_date
     end
 
-    def endDate
-      if @endDate.nil?
+    def end_date
+      if @end_date.nil?
         end_time = Time.parse(self.end_time)
 
-        @endDate = Date.parse(end_time.strftime('%Y/%m/%d'))
+        @end_date = Date.parse(end_time.strftime('%Y/%m/%d'))
 
         # All day events end at midnight on the next day
         # which is totally wrong
         if self.all_day?
-          @endDate = @endDate.prev_day
+          @end_date = @end_date.prev_day
         end
       end
 
-      @endDate
+      @end_date
     end
 
     def on_day?(day)
-      (day >= self.startDate and day <= self.endDate )
+      (day >= self.start_date and day <= self.end_date )
     end
 
     # https://github.com/northworld/google_calendar/issues/27
