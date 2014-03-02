@@ -58,7 +58,7 @@ def get_cloud_event_data
     :app_name => 'github.com-mcormier-StGeorgeCalendar',
     :calendar => @calendar )
 
-  return cal.lookup(999)
+  cal.lookup(999)
 end
 
 
