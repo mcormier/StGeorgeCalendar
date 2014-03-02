@@ -141,16 +141,16 @@ def generate_month( firstDay, monthName, events )
   x = Builder::XmlMarkup.new( :indent => 2 )
 
   current_day = firstDay
-  currentMonth = firstDay.month
+  current_month = firstDay.month
 
   File.open( @outputDir + monthName + ".html", "w") do |out|
     # <div id="April" class="month">
     out.puts x.div( :id => monthName, :class => "month") {
       outputHeaderAndWeekDays(x, firstDay)
      
-      while current_day.month == currentMonth
-        generateDateRow(x, current_day, currentMonth)
-        current_day = generateContentRow(x, current_day, currentMonth, events)
+      while current_day.month == current_month
+        generateDateRow(x, current_day, current_month)
+        current_day = generateContentRow(x, current_day, current_month, events)
       end
     }
   end
