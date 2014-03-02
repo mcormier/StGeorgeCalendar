@@ -172,9 +172,9 @@ def outputHeaderAndWeekDays(x, firstDay)
     } 
 end
 
-def generate(monthName, events)
-  d = Date.parse ('1 '+ monthName+ ' ' + @year)
-  generateMonth(d, monthName, events)
+def generate(month_name, events)
+  d = Date.parse ('1 '+ month_name+ ' ' + @year)
+  generateMonth(d, month_name, events)
 end
 
 
