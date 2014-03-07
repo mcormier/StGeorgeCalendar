@@ -9,6 +9,8 @@ require 'builder'             # For building HTML
 require 'date'
 require 'time'
 
+require 'pry'
+
 load '../config/config.properties'
 
 ENV['TZ'] = @timezone
@@ -63,6 +65,10 @@ module Google
       duration % (24 * 60 * 60) == 0 && time == Time.local(time.year,time.month,time.day)
     end
 
+    def self.<=>(b)
+      -1
+    end
+
   end
 
   class Calendar
@@ -73,6 +79,20 @@ module Google
     end
 
   end
+end
+
+#
+def compare_google_events(a, b)
+  # Time.parse(a.start_time) <=> Time.parse(b.start_time)
+
+
+  # -1 if self < argument     a < b
+  # 0 if self == argument
+  # 1 if self > argument      a > b
+
+  #binding.pry
+
+  1
 end
 
 
@@ -88,18 +108,28 @@ end
 
 def build_event_string(current_day, events)
 
-  event_string = ''
+
+  days_event_list = []
 
   events.each do |event|
     if event.on_day?(current_day)
-      # use the description
-      if event_string.length > 0
-        event_string = event_string + "\n\n"
-      end
-      event_string += event.content
+      # put into array so we can order them by time.
+      days_event_list.push(event)
     end
-
   end
+
+  event_string = ''
+
+  days_event_list.sort { |a,b| compare_google_events(a, b) }
+
+  days_event_list.each do |event|
+    # use the description
+    if event_string.length > 0
+      event_string = event_string + "\n\n"
+    end
+    event_string += event.content
+  end
+
 
   event_string
 end
