@@ -81,18 +81,23 @@ module Google
   end
 end
 
-#
+# -1 if self < argument     a < b
+# 0 if self == argument
+# 1 if self > argument      a > b
 def compare_google_events(a, b)
-  # Time.parse(a.start_time) <=> Time.parse(b.start_time)
+  time_a = Time.parse(a.start_time)
+  time_b = Time.parse(b.start_time)
 
+  if time_a == time_b
+    return 0
+  end
 
-  # -1 if self < argument     a < b
-  # 0 if self == argument
-  # 1 if self > argument      a > b
+  if time_a > time_b
+    return 1
+  end
 
-  #binding.pry
+  -1
 
-  1
 end
 
 
@@ -107,8 +112,6 @@ end
 
 
 def build_event_string(current_day, events)
-
-
   days_event_list = []
 
   events.each do |event|
@@ -120,7 +123,7 @@ def build_event_string(current_day, events)
 
   event_string = ''
 
-  days_event_list.sort { |a,b| compare_google_events(a, b) }
+  days_event_list = days_event_list.sort { |a,b| compare_google_events(a, b) }
 
   days_event_list.each do |event|
     # use the description
