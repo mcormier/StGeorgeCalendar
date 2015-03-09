@@ -30,4 +30,8 @@ class PPEvent
     @event.summary
   end
 
+  def start_time
+    @event.dtstart
+  end
+
 end
