@@ -3,4 +3,5 @@ require 'icalendar/recurrence'
 require 'builder'
 
 
-require_relative 'ppevent'
+require_relative 'pp_cal_generator'
+require_relative 'pp_event'
