@@ -17,22 +17,31 @@ cal_file = File.open(script_location + '/../data/ical/2015_mar_8.ics')
 # one calendar.
 calendars = Icalendar.parse(cal_file)
 
+calendar = calendars[0]
 
-#for i in 2..11
-#  month_name = Date::MONTHNAMES[i]
-#  generate(month_name, events)
-#  puts "Generated #{month_name}"
-#end
+# Returns an array of Icalendar::Event
+events = calendar.events
+
+events.each do |event|
+  puts event.summary
+  puts "DTSTART: #{event.dtstart}"
+  puts "DTEND: #{event.dtstart}"
+  puts ''
+end
+
+puts "Number of events #{events.length}"
 
 # This returns an Icalendar::Event
-event = Array(calendars).first.events.first # retrieve the first event
+#event = Array(calendars).first.events.first # retrieve the first event
 
 # get all occurrence for one month
-blah = event.occurrences_between(Date.parse('2015-03-01'), Date.parse('2015-09-01'))
+#blah = event.occurrences_between(Date.parse('2015-03-01'), Date.parse('2015-09-01'))
 
-puts blah[0].start_time
-puts blah[0].end_time
+#puts blah.length
 
-puts event
-puts event.description
-puts event.summary
+#puts blah[0].start_time
+#puts blah[0].end_time
+
+#puts event
+#puts event.description
+#puts event.summary
