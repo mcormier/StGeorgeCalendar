@@ -1,11 +1,10 @@
 #!/usr/bin/env ruby
 
-require 'icalendar'
-require 'icalendar/recurrence'
-require 'builder'
+
+require_relative '../lib/stgeorgecal'
 
 require_relative 'lib/common.rb'
-require_relative '../lib/stgeorgecal'
+
 
 script_location = File.expand_path File.dirname(__FILE__)
 to_load = script_location + '/../config/config.properties'
