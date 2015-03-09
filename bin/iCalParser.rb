@@ -26,22 +26,10 @@ events.each do |event|
   puts event.summary
   puts "DTSTART: #{event.dtstart}"
   puts "DTEND: #{event.dtstart}"
+
+  occurrences = event.occurrences_between(Date.parse('2015-03-01'), Date.parse('2015-09-01'))
+  puts "occurrences: #{occurrences.length}"
   puts ''
 end
 
 puts "Number of events #{events.length}"
-
-# This returns an Icalendar::Event
-#event = Array(calendars).first.events.first # retrieve the first event
-
-# get all occurrence for one month
-#blah = event.occurrences_between(Date.parse('2015-03-01'), Date.parse('2015-09-01'))
-
-#puts blah.length
-
-#puts blah[0].start_time
-#puts blah[0].end_time
-
-#puts event
-#puts event.description
-#puts event.summary
