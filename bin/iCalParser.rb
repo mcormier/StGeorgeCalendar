@@ -5,6 +5,7 @@ require 'icalendar/recurrence'
 require 'builder'
 
 require_relative 'lib/common.rb'
+require_relative '../lib/stgeorgecal'
 
 script_location = File.expand_path File.dirname(__FILE__)
 to_load = script_location + '/../config/config.properties'
@@ -23,6 +24,7 @@ calendar = calendars[0]
 events = calendar.events
 
 events.each do |event|
+  if event.summary == 'TGIF Tennis'
   puts event.summary
   puts "DTSTART: #{event.dtstart}"
   puts "DTEND: #{event.dtstart}"
@@ -30,6 +32,14 @@ events.each do |event|
   occurrences = event.occurrences_between(Date.parse('2015-03-01'), Date.parse('2015-09-01'))
   puts "occurrences: #{occurrences.length}"
   puts ''
+
+
+  occurrences.each do |occurs|
+    puts "#{occurs.start_time}"
+  end
+
+  end
+
 end
 
 puts "Number of events #{events.length}"
