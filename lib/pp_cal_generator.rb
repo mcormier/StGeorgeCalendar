@@ -111,7 +111,7 @@ class PPCalGenerator
 
     event_string = ''
 
-    days_event_list = days_event_list.sort { |a,b| compare_google_events(a, b) }
+    days_event_list = days_event_list.sort { |a,b| compare_events(a, b) }
 
     days_event_list.each do |event|
       # use the description
@@ -124,6 +124,26 @@ class PPCalGenerator
 
     event_string
   end
+
+  # -1 if self < argument     a < b
+  # 0 if self == argument
+  # 1 if self > argument      a > b
+  def compare_events(a, b)
+    time_a = Time.parse(a.start_time)
+    time_b = Time.parse(b.start_time)
+
+    if time_a == time_b
+      return 0
+    end
+
+    if time_a > time_b
+      return 1
+    end
+
+    -1
+
+  end
+
 
   # Generates:
   #   <div class="monthHeader">April 2013</div>
