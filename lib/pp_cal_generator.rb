@@ -125,4 +125,20 @@ class PPCalGenerator
     event_string
   end
 
+  # Generates:
+  #   <div class="monthHeader">April 2013</div>
+  #   <div class="weekDays">
+  #     <div>Sunday</div>
+  #     ...
+  #     </div>Saturday</div>
+  #   </div>
+  #
+  def output_header_and_week_days(x, first_day)
+    month_header = Date::MONTHNAMES[first_day.month] + ' ' + first_day.year.to_s
+    x.div( month_header, :class => 'monthHeader')
+    x.div( :class => 'weekDays') {
+      Date::DAYNAMES.each { |day| x.div day }
+    }
+  end
+
 end
