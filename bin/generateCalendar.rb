@@ -4,7 +4,16 @@
 
 require 'rubygems'
 require 'optparse'
-require 'google_calendar'     # https://github.com/northworld/google_calendar
+
+begin
+  gem 'google_calendar', '=0.4.4'     
+  require 'google_calendar'     # https://github.com/northworld/google_calendar
+rescue LoadError
+  puts ' Missing google calendar gem'
+  puts ' Try: gem install google_calendar -v 0.4.4'
+  exit
+end
+
 require 'builder'             # For building HTML
 require 'date'
 require 'time'
@@ -22,6 +31,7 @@ ENV['TZ'] = @timezone
 
 module Google
 
+=begin
   class Event
 
     def start_date
@@ -54,6 +64,7 @@ module Google
     end
 
     # https://github.com/northworld/google_calendar/issues/27
+    
     def all_day?
       case @start_time
         when String
@@ -71,6 +82,9 @@ module Google
 
   end
 
+=end
+
+=begin
   class Calendar
     # By default Google only returns 25 results at a time,
     # this method allows us to grab everything in one go.
@@ -79,6 +93,9 @@ module Google
     end
 
   end
+=end
+
+
 end
 
 # -1 if self < argument     a < b
@@ -103,11 +120,36 @@ end
 
 def get_cloud_event_data
 
-  cal = Google::Calendar.new( :username => @username, :password => @password,
-    :app_name => 'github.com-mcormier-StGeorgeCalendar',
+# Google now requires a client id.
+# https://github.com/northworld/google_calendar/blob/master/lib/google/calendar.rb
+#
+# Create one here --> https://console.developers.google.com/
+#
+#
+
+  cal = Google::Calendar.new( 
+    :client_id => @client_id,
+    :client_secret => @client_secret,
+    :redirect_url => 'urn:ietf:wg:oauth:2.0:oob',
     :calendar => @calendar )
 
-  cal.lookup(999)
+#  puts "Do you already have a refresh token? (y/n)"
+#  has_token = $stdin.gets.chomp
+
+  #if has_token.downcase != 'y'
+    # A user needs to approve access in order to work with their calendars.
+    puts "Visit the following web page in your browser and approve access."
+    puts cal.authorize_url
+    puts "\nCopy the code that Google returned and paste it here:"
+  
+    # Pass the ONE TIME USE access code here to login and get a refresh token 
+    # that you can use for access from now on.
+    refresh_token = cal.login_with_auth_code( $stdin.gets.chomp )
+  
+
+
+  #cal.lookup(999)
+  cal.events
 end
 
 
@@ -247,6 +289,15 @@ end.parse!
 
 
 events = get_cloud_event_data
+
+if events.nil?
+  puts '==========================================='
+  puts ' No events found exiting ...'
+  puts '==========================================='
+  exit
+end
+
+
 if options[:verbose]
   puts '==========================================='
   puts 'Begin events received from the fluffy cloud'
@@ -258,8 +309,8 @@ end
 puts 'Got event data from the Google cloud.  I like fluffy clouds...'
 
 
-# April until November
-for i in 4..11
+# March until November
+for i in 2..11
   month_name = Date::MONTHNAMES[i]
   generate(month_name, events)
   puts "Generated #{month_name}"
