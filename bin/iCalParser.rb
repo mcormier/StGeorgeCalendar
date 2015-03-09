@@ -3,7 +3,6 @@
 
 require_relative '../lib/stgeorgecal'
 
-require_relative 'lib/common.rb'
 
 
 script_location = File.expand_path File.dirname(__FILE__)
@@ -44,4 +43,6 @@ events.each do |event|
 
 end
 
-puts "Number of events #{events.length}"
+
+generator = PPCalGenerator.new(pp_events)
+generator.generate
