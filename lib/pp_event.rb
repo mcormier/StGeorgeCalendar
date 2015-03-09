@@ -24,4 +24,10 @@ class PPEvent
     #(day >= self.start_date and day <= self.end_date )
     false
   end
+
+
+  def content
+    @event.summary
+  end
+
 end
