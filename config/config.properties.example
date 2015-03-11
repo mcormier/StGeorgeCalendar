@@ -1,7 +1,19 @@
-@username="username@gmail.com"
-@password="xxxx"
-@calendar="St. George 2013"
-@year="2013"
+@year="2015"
+
+#####################################
+# Config for iCalParser
+#######################################
+@ical_file="/Users/mcormier/Portfolio/GIT/StGeorgeCalendar/data/ical/2015_mar_11.ics"
+
+
+#####################################
+# Config for generateCalender
+#######################################
+@client_id='blahblahblah'
+@client_secret='ssshhhh_its_a_secret'
+@calendar="blabblahblah@group.calendar.google.com"
+
+
 
 #######################
 # TIMEZONE
