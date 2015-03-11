@@ -33,6 +33,24 @@ class PPEvent
   end
 
 
+  def start_time_for(day)
+
+    @occurrences.each do |occurs|
+
+      start_date = occurs.start_time.getlocal.to_date
+      end_date = (occurs.end_time.getlocal - 1).to_date
+
+      if day >= start_date and day <= end_date
+        return occurs.start_time
+      end
+
+    end
+
+    # Return a really old date if this event doesn't occur on that day
+    Time.new(2002)
+
+  end
+
   def content
     @event.description
   end
