@@ -1,11 +1,11 @@
 
 class PPCalGenerator
 
-  attr_accessor :test
+  attr_accessor :test_mode
 
   def initialize(events)
      @events = events
-     @test = false
+     @test_mode = false
 
      # TODO -- make these hard coded values dynamic
      @year = '2015'
@@ -32,7 +32,9 @@ class PPCalGenerator
     current_day = first_day
     current_month = first_day.month
 
-    File.open( @outputDir + month_name + '.html', 'w') do |out|
+    file_name = @outputDir + month_name + '.html'
+
+    File.open( file_name, 'w') do |out|
       # <div id="April" class="month">
       out.puts x.div( :id => month_name, :class => 'month') {
         output_header_and_week_days(x, first_day)
@@ -42,6 +44,20 @@ class PPCalGenerator
           current_day = generate_content_row(x, current_day, current_month, events)
         end
       }
+    end
+
+    # Append the stylesheet to the beginning of the generated file if we're running in
+    # test mode.
+    if test_mode
+      f = File.open(file_name, "r+")
+      lines = f.readlines
+      f.close
+
+      lines = ['<link rel="stylesheet" type="text/css" href="../calendar13.css" />'] + lines
+
+      output = File.new(file_name, "w")
+      lines.each { |line| output.write line }
+      output.close
     end
 
   end

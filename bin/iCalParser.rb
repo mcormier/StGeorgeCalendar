@@ -60,7 +60,7 @@ end
 generator = PPCalGenerator.new(pp_events)
 
 if options[:test]
-  generator.test=true
+  generator.test_mode=true
 end
 
 generator.generate
