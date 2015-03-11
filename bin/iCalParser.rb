@@ -20,7 +20,7 @@ end.parse!
 
 ENV['TZ'] = @timezone
 
-cal_file = File.open(script_location + '/../data/ical/2015_mar_8.ics')
+cal_file = File.open(@ical_file)
 
 # An array of Icalendar::Calendar.  For our purposes the ics file contains only
 # one calendar.
