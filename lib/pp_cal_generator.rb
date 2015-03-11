@@ -9,7 +9,7 @@ class PPCalGenerator
 
      # TODO -- make these hard coded values dynamic
      @year = '2015'
-     @outputDir = '/Users/mcormier/Portfolio/GIT/StGeorgeCalendar/data/2015/'
+     @output_dir = '/Users/mcormier/Portfolio/GIT/StGeorgeCalendar/data/2015/'
   end
 
 
@@ -32,7 +32,7 @@ class PPCalGenerator
     current_day = first_day
     current_month = first_day.month
 
-    file_name = @outputDir + month_name + '.html'
+    file_name = @output_dir + month_name + '.html'
 
     File.open( file_name, 'w') do |out|
       # <div id="April" class="month">
@@ -49,13 +49,13 @@ class PPCalGenerator
     # Append the stylesheet to the beginning of the generated file if we're running in
     # test mode.
     if test_mode
-      f = File.open(file_name, "r+")
+      f = File.open(file_name, 'r+')
       lines = f.readlines
       f.close
 
       lines = ['<link rel="stylesheet" type="text/css" href="../calendar13.css" />'] + lines
 
-      output = File.new(file_name, "w")
+      output = File.new(file_name, 'w')
       lines.each { |line| output.write line }
       output.close
     end
