@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-
+require 'optparse'
 require_relative '../lib/stgeorgecal'
 
 
@@ -8,6 +8,15 @@ require_relative '../lib/stgeorgecal'
 script_location = File.expand_path File.dirname(__FILE__)
 to_load = script_location + '/../config/config.properties'
 load to_load
+
+options = {}
+OptionParser.new do |opts|
+  opts.banner = 'Usage: iCalParser.rb [options]'
+
+  opts.on('-t', '--test', 'Adds style sheet to generated files for testing') do |t|
+    options[:test] = t
+  end
+end.parse!
 
 
 cal_file = File.open(script_location + '/../data/ical/2015_mar_8.ics')
@@ -29,15 +38,19 @@ events.each do |event|
   pp_event = PPEvent.new(event, occurrences)
   pp_events.push pp_event
 
-  if event.summary == 'TGIF Tennis'
+  if event.summary == 'Mothers Day'
     puts event.summary
     puts "DTSTART: #{event.dtstart}"
     puts "DTEND: #{event.dtstart}"
     puts "occurrences: #{occurrences.length}"
+    puts "duration: #{event.duration}"
     puts ''
 
     occurrences.each do |occurs|
-      puts "#{occurs.start_time}"
+      puts "Start time: #{occurs.start_time}"
+      puts "End time: #{occurs.end_time}"
+      puts "End time: #{occurs.end_time.class}"
+      puts "End time: #{occurs.end_time - 1}"
     end
   end
 
@@ -45,4 +58,9 @@ end
 
 
 generator = PPCalGenerator.new(pp_events)
+
+if options[:test]
+  generator.test=true
+end
+
 generator.generate
