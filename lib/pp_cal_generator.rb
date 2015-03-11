@@ -1,8 +1,11 @@
 
 class PPCalGenerator
 
+  attr_accessor :test
+
   def initialize(events)
      @events = events
+     @test = false
 
      # TODO -- make these hard coded values dynamic
      @year = '2015'
