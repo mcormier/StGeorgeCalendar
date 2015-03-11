@@ -11,8 +11,10 @@ class PPEvent
     if @occurrences.length > 0
       # TODO loop through occurrences and return true if start_time end_time works...
 
+      # Subtract 1 second from end_time because all day events end at midnight on the
+      # next day.
       @occurrences.each do |occurs|
-        if day >= occurs.start_time.to_date and day <= occurs.end_time.to_date
+        if day >= occurs.start_time.to_date and day <= (occurs.end_time - 1).to_date
           return true
         end
       end
