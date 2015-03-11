@@ -130,8 +130,7 @@ class PPCalGenerator
 
     event_string = ''
 
-    # TODO -- fix sorting.
-    #days_event_list = days_event_list.sort { |a,b| compare_events(a, b) }
+    days_event_list = days_event_list.sort { |a,b| compare_events(a, b, current_day) }
 
     days_event_list.each do |event|
       # use the description
@@ -148,9 +147,9 @@ class PPCalGenerator
   # -1 if self < argument     a < b
   # 0 if self == argument
   # 1 if self > argument      a > b
-  def compare_events(a, b)
-    time_a = a.start_time
-    time_b = b.start_time
+  def compare_events(a, b, day)
+    time_a = a.start_time_for(day)
+    time_b = b.start_time_for(day)
 
     if time_a == time_b
       return 0
