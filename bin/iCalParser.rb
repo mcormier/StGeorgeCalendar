@@ -18,6 +18,7 @@ OptionParser.new do |opts|
   end
 end.parse!
 
+ENV['TZ'] = @timezone
 
 cal_file = File.open(script_location + '/../data/ical/2015_mar_8.ics')
 
@@ -38,7 +39,7 @@ events.each do |event|
   pp_event = PPEvent.new(event, occurrences)
   pp_events.push pp_event
 
-  if event.summary == 'Mothers Day'
+  if event.summary == 'Annual General Meeting'
     puts event.summary
     puts "DTSTART: #{event.dtstart}"
     puts "DTEND: #{event.dtstart}"
