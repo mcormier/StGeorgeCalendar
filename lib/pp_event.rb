@@ -27,7 +27,7 @@ class PPEvent
 
 
   def content
-    @event.summary
+    @event.description
   end
 
   def start_time
