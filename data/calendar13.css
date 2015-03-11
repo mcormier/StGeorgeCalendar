@@ -89,11 +89,12 @@ div.innerContainer {
 /* customize the default height of a day based on the max needed
  * for a particular month
  */
-div#May div.outerContainer, div#May div.innerContainer { height: 210px; }
+div#May div.outerContainer, div#May div.innerContainer { height: 220px; }
 div#June div.outerContainer, div#June div.innerContainer { height: 220px; }
 div#July div.outerContainer, div#July div.innerContainer { height: 280px; }
-div#August div.outerContainer, div#August div.innerContainer { height: 290px; }
-div#September div.outerContainer, div#September div.innerContainer { height: 210px; }
+div#August div.outerContainer, div#August div.innerContainer { height: 240px; }
+div#September div.outerContainer, div#September div.innerContainer { height: 170px; }
+div#October div.outerContainer, div#October div.innerContainer { height: 170px; }
 
 
 
