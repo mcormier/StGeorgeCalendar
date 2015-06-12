@@ -17,7 +17,7 @@ class PPCalGenerator
 
     for i in 4..11
       month_name = Date::MONTHNAMES[i]
-      puts "TODO generate #{month_name} "
+      puts " generate #{month_name} "
       generate_month(month_name, @events)
     end
 
