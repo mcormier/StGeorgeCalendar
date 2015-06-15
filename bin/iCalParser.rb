@@ -64,6 +64,6 @@ if options[:test]
   generator.test_mode=true
 end
 
-generator.output_dir = @output_dir
+generator.output_dir = @outputDir
 
 generator.generate
