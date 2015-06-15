@@ -2,6 +2,7 @@
 class PPCalGenerator
 
   attr_accessor :test_mode
+  attr_accessor :output_dir
 
   def initialize(events)
      @events = events
