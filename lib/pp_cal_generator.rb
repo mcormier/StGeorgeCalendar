@@ -8,8 +8,8 @@ class PPCalGenerator
      @test_mode = false
 
      # TODO -- make these hard coded values dynamic
-     @year = '2015'
-     @output_dir = '/Users/mcormier/Portfolio/GIT/StGeorgeCalendar/data/2015/'
+     @year = '2016'
+     @output_dir = '/Users/mcormier/Portfolio/GIT/StGeorgeCalendar/data/2016/'
   end
 
 

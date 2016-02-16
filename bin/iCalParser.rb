@@ -35,7 +35,7 @@ pp_events = Array.new
 
 events.each do |event|
 
-  occurrences = event.occurrences_between(Date.parse('2015-01-01'), Date.parse('2015-12-01'))
+  occurrences = event.occurrences_between(Date.parse('2016-01-01'), Date.parse('2016-12-01'))
   pp_event = PPEvent.new(event, occurrences)
   pp_events.push pp_event
 
